@@ -1,14 +1,28 @@
 import ResCard from "./ResCard";
 import {resListData} from "../Utils/mockData"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Body = () => {
-    let [listOfRestuarant, setListOfRestuarant] = useState(resListData);
+    const [listOfRestuarant, setListOfRestuarant] = useState(resListData);
+    const [filterButton, setFilterButton] = useState(true);
+
+    useEffect(() => {
+      console.log("UseEffect Called");
+    }, []);
+    
+    console.log("Body Rendered");
 
     const filter_topRating = () => {
+      if(filterButton){
         let newList = listOfRestuarant.filter((res)=> res.data.rating > 4)
         setListOfRestuarant(newList);
+        setFilterButton(false);
+      }
+      else{
+        setListOfRestuarant(resListData);
+        setFilterButton(true);
+      }
     }
 
     return (
