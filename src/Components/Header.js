@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Logo_URL } from "../Utils/constants";
 
 const Header = () => {    
+  const [loginbtn, setLoginbtn] = useState("Login");
+
+  console.log("Header Rendered");
+
     return (
       <div className='header'>
         <div className='image-container'>
@@ -12,6 +17,11 @@ const Header = () => {
             <li>About Us</li>
             <li>Contact Us</li>
             <li>Cart</li>
+            <button onClick={()=>{
+              loginbtn === "Login" ?
+              setLoginbtn("Logout") : 
+              setLoginbtn("Login");
+            }}>{loginbtn}</button>
           </ul>
         </div>
       </div>
