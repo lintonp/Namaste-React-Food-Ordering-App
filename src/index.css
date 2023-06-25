@@ -43,9 +43,13 @@
 
 .res-card {
   width: 200px;
+  word-wrap: break-word;
   /* height: 300px; */
   margin: 5px;
   background-color: #f0f0f0;
+  text-decoration: none;
+  font-style: normal;
+  color: black;
 }
 
 .res-card:hover{

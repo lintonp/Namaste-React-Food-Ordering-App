@@ -1,28 +1,54 @@
 import ResCard from "./ResCard";
 import {resListData} from "../Utils/mockData"
-
+import {SWIGGY_API_URL} from "../Utils/constants"
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
-    const [listOfRestuarant, setListOfRestuarant] = useState(resListData);
+    const [listOfRestuarant, setListOfRestuarant] = useState([]);
     const [filteredListOfRestuarant, setFilteredListOfRestuarant] = useState(listOfRestuarant);
     
     const [filterButton, setFilterButton] = useState(true);
     const [searchText, setSearchText] = useState("");
 
+    let rawDataJson;
+
     useEffect(() => {
       console.log("UseEffect Called");
-      fetchDataAPI();
+      // fetchDataAPI();
+      getResList();
     }, []);
     
     console.log("Body Rendered");
 
-    const fetchDataAPI = () => {
+    const fetchDataAPI = async () => {
       //for now without API
       setListOfRestuarant(resListData);
+      console.log("Calling API");
+      const raw_data = await fetch(SWIGGY_API_URL);
+      console.log(raw_data);
+      rawDataJson = raw_data.json();
+      console.log(rawDataJson);
+    }
+
+    const getResList = () => {
+      console.log("Fetching List");
+      fetch(SWIGGY_API_URL).then(
+        (raw) => {
+          console.log(raw);
+          raw.json().then(
+            (data) => {
+              console.log(data.data?.cards[2]?.data?.data?.cards)
+              setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+              setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards)
+            }
+          )
+        }
+      )
     }
 
     const filter_topRating = () => {
+      console.log(rawDataJson);
       if(filterButton){
         let newList = listOfRestuarant.filter((res)=> res.data.rating > 4)
         setFilteredListOfRestuarant(newList);
@@ -42,6 +68,11 @@ const Body = () => {
       setFilteredListOfRestuarant(newList)
     }
 
+    if(filteredListOfRestuarant.length === 0){
+      return <h1>Loading</h1>
+    }
+
+    
     return (
       <div className='body'>
         <div className='search'>
@@ -58,7 +89,7 @@ const Body = () => {
           {
             //console.log(resListData)
             filteredListOfRestuarant.map((restaurant) => {
-              return <ResCard key={restaurant.data.imageID} resData={restaurant} />
+              return <Link key={restaurant.data.id} to={"restaurant/" + restaurant.data.id}><ResCard resData={restaurant} /></Link>
             })
           }          
         </div>
