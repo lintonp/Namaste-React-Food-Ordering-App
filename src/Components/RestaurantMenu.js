@@ -1,41 +1,12 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
-import {SWIGGY_MENU_API_URL} from "../Utils/constants"
+import useRestaurantMenu from "../Utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
     const {resID} = useParams();
-    const [resDetails, setResDetails] = useState({});
-    const [resMenuDetails, setResMenuDetails] = useState([]);
+    const {resMenuDetails, resDetails} = useRestaurantMenu(resID);
 
     const {name, cuisines} = resDetails;
-
-    useEffect(() => {
-        fetchResDetails();
-    },[]);
-
-    const fetchResDetails = async () => {
-        // console.log("Fetching inside Restaurant Menu");
-        const rawData = await fetch(SWIGGY_MENU_API_URL+resID);
-        const jsonData = await rawData.json();
-        setResDetails(jsonData?.data?.cards[0]?.card?.card?.info);
-        console.log(jsonData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-        setResMenuDetails(jsonData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-    }
-    // const fetchResDetails = () => {
-    //     // console.log("Fetching inside Restaurant Menu");
-    //     fetch(SWIGGY_MENU_API_URL+resID)
-    //     .then((rawData) => {
-    //         rawData.json()
-    //         .then((data) => {
-    //             console.log(data);
-    //             // console.log(data?.data?.cards[0]?.card?.card?.info);
-    //             setResDetails(data?.data?.cards[0]?.card?.card?.info);
-    //             console.log(data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-    //             setResMenuDetails(data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-    //         })
-    //     });
-    // }
 
     return(
         <div className="restaurant-menu-container">

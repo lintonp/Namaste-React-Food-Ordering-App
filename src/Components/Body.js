@@ -72,7 +72,6 @@ const Body = () => {
       return <h1>Loading</h1>
     }
 
-    
     return (
       <div className='body'>
         <div className='search'>
