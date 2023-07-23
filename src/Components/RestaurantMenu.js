@@ -12,9 +12,10 @@ const RestaurantMenu = () => {
 
     useEffect(() => {
         fetchResDetails();
-    }, []);
+    },);
 
     const fetchResDetails = () => {
+        // console.log("Fetching inside Restaurant Menu");
         fetch(SWIGGY_MENU_API_URL+resID)
         .then((rawData) => {
             rawData.json()
