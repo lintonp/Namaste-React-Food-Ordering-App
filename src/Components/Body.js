@@ -3,6 +3,7 @@ import {resListData} from "../Utils/mockData"
 import {SWIGGY_API_URL} from "../Utils/constants"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 const Body = () => {
     const [listOfRestuarant, setListOfRestuarant] = useState([]);
@@ -10,6 +11,8 @@ const Body = () => {
     
     const [filterButton, setFilterButton] = useState(true);
     const [searchText, setSearchText] = useState("");
+
+    const onlineStatus = useOnlineStatus();
 
     let rawDataJson;
 
@@ -66,6 +69,10 @@ const Body = () => {
         return res.data.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
       })
       setFilteredListOfRestuarant(newList)
+    }
+    
+    if(onlineStatus===false){
+      return <h1>Sorry, You are Offline.</h1>
     }
 
     if(filteredListOfRestuarant.length === 0){
