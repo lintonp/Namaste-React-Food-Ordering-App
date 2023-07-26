@@ -25,15 +25,15 @@ const Body = () => {
 
   console.log("Body Rendered");
 
-  const fetchDataAPI = async () => {
-    //for now without API
-    setListOfRestuarant(resListData);
-    console.log("Calling API");
-    const raw_data = await fetch(SWIGGY_API_URL);
-    console.log(raw_data);
-    rawDataJson = raw_data.json();
-    console.log(rawDataJson);
-  };
+  // const fetchDataAPI = async () => {
+  //   //for now without API
+  //   setListOfRestuarant(resListData);
+  //   console.log("Calling API");
+  //   const raw_data = await fetch(SWIGGY_API_URL);
+  //   console.log(raw_data);
+  //   rawDataJson = raw_data.json();
+  //   console.log(rawDataJson);
+  // };
 
   const getResList = () => {
     console.log("Fetching List");
@@ -79,8 +79,8 @@ const Body = () => {
 
   return (
     <div className="">
-      <div className="flex m-2 content-center">
-        <div className="">
+      <div className="filter flex m-2 content-center">
+        <div className="search m-4 p-4">
           <input
             className="border border-solid border-black"
             type="text"
@@ -96,9 +96,12 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div>
-          <button className="bg-gray-100 rounded-lg" onClick={filter_topRating}>
-            Filter top rated rest
+        <div className="flex items-center">
+          <button
+            className="px-2 bg-gray-100 rounded-lg"
+            onClick={filter_topRating}
+          >
+            Filter top rated restaurants
           </button>
         </div>
       </div>
