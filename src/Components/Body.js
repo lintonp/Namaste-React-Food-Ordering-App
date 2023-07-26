@@ -45,9 +45,11 @@ const Body = () => {
           data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants
         );
-        let list =
-          data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants;
+        console.log("old", data.data?.cards[2]?.data?.data?.cards);
+        // let list =
+        //   data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        //     ?.restaurants;
+        let list = data.data?.cards[2]?.data?.data?.cards;
         setListOfRestuarant(list);
         setFilteredListOfRestuarant(list);
         // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
@@ -59,7 +61,7 @@ const Body = () => {
   const filter_topRating = () => {
     console.log(rawDataJson);
     if (filterButton) {
-      let newList = listOfRestuarant.filter((res) => res.info.avgRating > 4);
+      let newList = listOfRestuarant.filter((res) => res.data.avgRating > 4);
       setFilteredListOfRestuarant(newList);
       setFilterButton(false);
     } else {
@@ -71,7 +73,7 @@ const Body = () => {
   const searchFilter = () => {
     console.log(searchText);
     let newList = listOfRestuarant.filter((res) => {
-      return res.info.name
+      return res.data.name
         .toLocaleLowerCase()
         .includes(searchText.toLocaleLowerCase());
     });
@@ -120,8 +122,8 @@ const Body = () => {
           filteredListOfRestuarant.map((restaurant) => {
             return (
               <Link
-                key={restaurant.info.id}
-                to={"restaurant/" + restaurant.info.id}
+                key={restaurant.data.id}
+                to={"restaurant/" + restaurant.data.id}
               >
                 <ResCard resData={restaurant} />
               </Link>
