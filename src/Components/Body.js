@@ -25,24 +25,33 @@ const Body = () => {
 
   console.log("Body Rendered");
 
-  // const fetchDataAPI = async () => {
-  //   //for now without API
-  //   setListOfRestuarant(resListData);
-  //   console.log("Calling API");
-  //   const raw_data = await fetch(SWIGGY_API_URL);
-  //   console.log(raw_data);
-  //   rawDataJson = raw_data.json();
-  //   console.log(rawDataJson);
-  // };
+  const fetchDataAPI = async () => {
+    //for now without API
+    setListOfRestuarant(resListData);
+    console.log("Calling API");
+    const raw_data = await fetch(SWIGGY_API_URL);
+    console.log(raw_data);
+    rawDataJson = raw_data.json();
+    console.log(rawDataJson);
+  };
 
   const getResList = () => {
     console.log("Fetching List");
     fetch(SWIGGY_API_URL).then((raw) => {
       console.log(raw);
       raw.json().then((data) => {
-        console.log(data.data?.cards[2]?.data?.data?.cards);
-        setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
-        setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+        console.log("data", data);
+        console.log(
+          data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants
+        );
+        let list =
+          data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants;
+        setListOfRestuarant(list);
+        setFilteredListOfRestuarant(list);
+        // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+        // setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
       });
     });
   };
@@ -50,7 +59,7 @@ const Body = () => {
   const filter_topRating = () => {
     console.log(rawDataJson);
     if (filterButton) {
-      let newList = listOfRestuarant.filter((res) => res.data.rating > 4);
+      let newList = listOfRestuarant.filter((res) => res.info.avgRating > 4);
       setFilteredListOfRestuarant(newList);
       setFilterButton(false);
     } else {
@@ -62,7 +71,7 @@ const Body = () => {
   const searchFilter = () => {
     console.log(searchText);
     let newList = listOfRestuarant.filter((res) => {
-      return res.data.name
+      return res.info.name
         .toLocaleLowerCase()
         .includes(searchText.toLocaleLowerCase());
     });
@@ -111,8 +120,8 @@ const Body = () => {
           filteredListOfRestuarant.map((restaurant) => {
             return (
               <Link
-                key={restaurant.data.id}
-                to={"restaurant/" + restaurant.data.id}
+                key={restaurant.info.id}
+                to={"restaurant/" + restaurant.info.id}
               >
                 <ResCard resData={restaurant} />
               </Link>
