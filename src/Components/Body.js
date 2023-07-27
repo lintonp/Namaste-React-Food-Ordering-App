@@ -35,21 +35,18 @@ const Body = () => {
     console.log(rawDataJson);
   };
 
+  //https://github.com/namastedev/namaste-react/commit/d3f0d801df96fb40a7d03cb411c72a469bbaef51
   const getResList = () => {
     console.log("Fetching List");
     fetch(SWIGGY_API_URL).then((raw) => {
-      console.log(raw);
+      // console.log(raw);
       raw.json().then((data) => {
-        console.log("data", data);
-        console.log(
+        // console.log("data", data);
+
+        let list =
           data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants
-        );
-        console.log("old", data.data?.cards[2]?.data?.data?.cards);
-        // let list =
-        //   data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-        //     ?.restaurants;
-        let list = data.data?.cards[2]?.data?.data?.cards;
+            ?.restaurants;
+        // list.map((res) => console.log(res));
         setListOfRestuarant(list);
         setFilteredListOfRestuarant(list);
         // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
@@ -73,7 +70,7 @@ const Body = () => {
   const searchFilter = () => {
     console.log(searchText);
     let newList = listOfRestuarant.filter((res) => {
-      return res.data.name
+      return res.info.name
         .toLocaleLowerCase()
         .includes(searchText.toLocaleLowerCase());
     });
@@ -122,8 +119,8 @@ const Body = () => {
           filteredListOfRestuarant.map((restaurant) => {
             return (
               <Link
-                key={restaurant.data.id}
-                to={"restaurant/" + restaurant.data.id}
+                key={restaurant.info.id}
+                to={"restaurant/" + restaurant.info.id}
               >
                 <ResCard resData={restaurant} />
               </Link>

@@ -14,7 +14,7 @@ const RestaurantMenu = () => {
       <h3>Restaurant Cuisines - {cuisines}</h3>
       <ul>
         {resMenuDetails.map((item) => {
-          return <li key={item.card.info.id}>{item.card.info.name}</li>;
+          return <li key={item.info.id}>{item.info.name}</li>;
         })}
       </ul>
     </div>
