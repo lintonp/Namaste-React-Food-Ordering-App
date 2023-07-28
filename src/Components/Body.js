@@ -35,18 +35,18 @@ const Body = () => {
     console.log(rawDataJson);
   };
 
-  //https://github.com/namastedev/namaste-react/commit/d3f0d801df96fb40a7d03cb411c72a469bbaef51
   const getResList = () => {
     console.log("Fetching List");
     fetch(SWIGGY_API_URL).then((raw) => {
-      // console.log(raw);
+      console.log(raw);
       raw.json().then((data) => {
-        // console.log("data", data);
+        console.log("data", data);
 
         let list =
           data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants;
-        // list.map((res) => console.log(res));
+        console.log(list);
+        list.map((res) => console.log(res));
         setListOfRestuarant(list);
         setFilteredListOfRestuarant(list);
         // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
@@ -90,7 +90,7 @@ const Body = () => {
       <div className="filter flex m-2 content-center">
         <div className="search m-4 p-4">
           <input
-            className="border border-solid border-black"
+            className="border border-solid border-black "
             type="text"
             value={searchText}
             onChange={(e) => {
@@ -98,7 +98,7 @@ const Body = () => {
             }}
           />
           <button
-            className="m-2 px-2 bg-green-200 rounded-lg"
+            className="m-2 p-2 bg-green-200 rounded-lg hover:bg-green-300"
             onClick={searchFilter}
           >
             Search
@@ -106,14 +106,14 @@ const Body = () => {
         </div>
         <div className="flex items-center">
           <button
-            className="px-2 bg-gray-100 rounded-lg"
+            className="p-2 rounded-lg bg-blue-200  hover:bg-blue-300"
             onClick={filter_topRating}
           >
             Filter top rated restaurants
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {
           //console.log(resListData)
           filteredListOfRestuarant.map((restaurant) => {
