@@ -23,9 +23,9 @@ const ResCard = (props) => {
         />
       </div>
       <h3 className="font-bold py-2">{name}</h3>
-      <h4>{avgRating} stars</h4>
       <h4>{cuisines.join(", ")}</h4>
       <h4>Rs. {feeDetails?.totalFee / 10}</h4>
+      <h4>{avgRating} stars</h4>
     </div>
   );
 };

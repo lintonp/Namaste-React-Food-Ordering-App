@@ -2,10 +2,15 @@ import { useState } from "react";
 import RestaurantCategoryFoodItems from "./RestaurantCategoryFoodItems";
 
 const RestaurantCategoryItem = ({ title, items }) => {
-  const [foodItemsDisplay, setFoodItemsDisplay] = useState(false);
+  const [foodItemsDisplay, setFoodItemsDisplay] = useState(false);  
+  const [food, setFood] = useState([]);
   const changeDisplay = () => {
     foodItemsDisplay ? setFoodItemsDisplay(false) : setFoodItemsDisplay(true);
   };
+  // console.log(items)
+  // setFood(items.map(card => card?.info));
+  // console.log(food);
+
   return (
     <div className="border-b-2 shadow-md m-2 px-2 py-1 bg-gray-100">
       <div
@@ -17,8 +22,7 @@ const RestaurantCategoryItem = ({ title, items }) => {
       </div>
       {foodItemsDisplay ? (
         <div className="">
-          {items?.card?.info}
-          <RestaurantCategoryFoodItems />
+          {/* items.map((card) => {<RestaurantCategoryFoodItems food={card?.card?.info} />}); */}
         </div>
       ) : (
         <></>
