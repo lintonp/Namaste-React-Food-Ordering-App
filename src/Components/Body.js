@@ -1,4 +1,4 @@
-import ResCard from "./ResCard";
+import ResCard, { withVeg } from "./ResCard";
 import { resListData } from "../Utils/mockData";
 import { SWIGGY_API_URL } from "../Utils/constants";
 import { useState, useEffect } from "react";
@@ -14,6 +14,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   const onlineStatus = useOnlineStatus();
+
+  const ResCardVeg = withVeg(ResCard);
 
   let rawDataJson;
 
@@ -46,7 +48,7 @@ const Body = () => {
           data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants;
         console.log(list);
-        list.map((res) => console.log(res));
+        // list.map((res) => console.log(res));
         setListOfRestuarant(list);
         setFilteredListOfRestuarant(list);
         // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
@@ -122,7 +124,11 @@ const Body = () => {
                 key={restaurant.info.id}
                 to={"restaurant/" + restaurant.info.id}
               >
-                <ResCard resData={restaurant} />
+                {restaurant.info.veg ? (
+                  <ResCardVeg resData={restaurant} />
+                ) : (
+                  <ResCard resData={restaurant} />
+                )}
               </Link>
             );
           })
