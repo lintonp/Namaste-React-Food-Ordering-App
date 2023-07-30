@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { SWIGGY_ClaudinaryImage_URL } from "../Utils/constants";
+import userContext from "../Utils/useContext";
 
 const ResCard = (props) => {
   const { resData } = props;
@@ -13,6 +15,8 @@ const ResCard = (props) => {
     feeDetails,
   } = resData?.info;
 
+  const { loggedinUser } = userContext(useContext);
+
   return (
     <div className="m-4 p-2 w-[200px] box-border border-solid rounded-lg bg-gray-200 hover:bg-gray-300">
       <div className="res-card-image-container">
@@ -26,6 +30,7 @@ const ResCard = (props) => {
       <h4>{cuisines.join(", ")}</h4>
       <h4>₹{feeDetails?.totalFee / 10}</h4>
       <h4>{avgRating} stars</h4>
+      {/* <h3>For {loggedinUser}</h3> */}
     </div>
   );
 };

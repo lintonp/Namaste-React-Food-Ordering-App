@@ -1,11 +1,19 @@
 import { useState } from "react";
 import RestaurantCategoryFoodItems from "./RestaurantCategoryFoodItems";
 
-const RestaurantCategoryItem = ({ title, items }) => {
+const RestaurantCategoryItem = ({
+  title,
+  items,
+  showItem,
+  setSeeCategoryIndex,
+  collapseAll,
+}) => {
   const [foodItemsDisplay, setFoodItemsDisplay] = useState(false);
 
   const changeDisplay = () => {
-    foodItemsDisplay ? setFoodItemsDisplay(false) : setFoodItemsDisplay(true);
+    // foodItemsDisplay ? setFoodItemsDisplay(false) : setFoodItemsDisplay(true);
+    // setFoodItemsDisplay(!foodItemsDisplay);
+    showItem ? collapseAll() : setSeeCategoryIndex();
   };
 
   return (
@@ -20,7 +28,7 @@ const RestaurantCategoryItem = ({ title, items }) => {
         <span>V</span>
       </div>
 
-      {foodItemsDisplay ? (
+      {showItem ? (
         <div>
           {items.map((card) => (
             <RestaurantCategoryFoodItems
