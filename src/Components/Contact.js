@@ -1,7 +1,9 @@
+import { useContext } from "react";
+import userContext from "../Utils/useContext";
+
 const Contact = () => {
-    return (
-        <div>Contacting Us</div>
-    )
-}
+  const { loggedinUser } = useContext(userContext);
+  return <div>Hey {loggedinUser}, Contact Us</div>;
+};
 
 export default Contact;

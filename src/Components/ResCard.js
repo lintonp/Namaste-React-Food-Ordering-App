@@ -15,7 +15,7 @@ const ResCard = (props) => {
     feeDetails,
   } = resData?.info;
 
-  const { loggedinUser } = userContext(useContext);
+  // const { loggedinUser } = userContext(useContext);
 
   return (
     <div className="m-4 p-2 w-[200px] box-border border-solid rounded-lg bg-gray-200 hover:bg-gray-300">

@@ -40,14 +40,14 @@ const Body = () => {
   const getResList = () => {
     console.log("Fetching List");
     fetch(SWIGGY_API_URL).then((raw) => {
-      console.log(raw);
+      // console.log(raw);
       raw.json().then((data) => {
-        console.log("data", data);
+        // console.log("data", data);
 
         let list =
           data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants;
-        console.log(list);
+        console.log("getResList list", list);
         // list.map((res) => console.log(res));
         setListOfRestuarant(list);
         setFilteredListOfRestuarant(list);
@@ -89,7 +89,7 @@ const Body = () => {
 
   return (
     <div className="">
-      <div className="filter flex m-2 content-center">
+      <div className="flex m-2 content-center">
         <div className="search m-4 p-4">
           <input
             className="border border-solid border-black "
