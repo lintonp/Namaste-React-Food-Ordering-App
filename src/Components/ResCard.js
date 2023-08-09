@@ -1,19 +1,10 @@
-import { useContext } from "react";
 import { SWIGGY_ClaudinaryImage_URL } from "../Utils/constants";
-import userContext from "../Utils/useContext";
 
 const ResCard = (props) => {
   const { resData } = props;
   // const {name, avgRating, cuisines, costForTwo, deliveryTime} = resData?.data;
-  console.log(resData);
-  const {
-    name,
-    cloudinaryImageId,
-    cuisines,
-    avgRating,
-    costForTwoString,
-    feeDetails,
-  } = resData?.info;
+  const { name, cloudinaryImageId, cuisines, avgRating, feeDetails } =
+    resData?.info;
 
   // const { loggedinUser } = userContext(useContext);
 

@@ -1,6 +1,9 @@
-import React, { lazy, Suspense, useEffect, useState, useContext } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+
+// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -12,12 +15,15 @@ import Error from "./Components/Error";
 import RestaurantMenu from "./Components/RestaurantMenu";
 
 import userContext from "./Utils/useContext";
+import appStore from "./Store/AppStore";
 
 const About = lazy(() => import("./Components/About"));
 const Grocery = lazy(() => import("./Components/Grocery"));
+const Cart = lazy(() => import("./Components/Cart"));
 
 const AppLayout = () => {
   const [loggedinUser, setLoggedinUser] = useState();
+
   useEffect(() => {
     const data = {
       name: "Linton",
@@ -26,10 +32,14 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <userContext.Provider value={{ loggedinUser, setLoggedinUser }}>
-      <Header />
-      <Outlet />
-    </userContext.Provider>
+    <Provider store={appStore}>
+      <userContext.Provider value={{ loggedinUser, setLoggedinUser }}>
+        <Header />
+        <div className="mx-4">
+          <Outlet />
+        </div>
+      </userContext.Provider>
+    </Provider>
   );
 };
 
@@ -68,6 +78,14 @@ const CBR = createBrowserRouter([
       },
     ],
     errorElement: <Error />,
+  },
+  {
+    path: "/cart",
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Cart />
+      </Suspense>
+    ),
   },
 ]);
 

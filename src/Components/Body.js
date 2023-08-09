@@ -88,7 +88,7 @@ const Body = () => {
   }
 
   return (
-    <div className="">
+    <div className="p-4 items-center">
       <div className="flex m-2 content-center">
         <div className="search m-4 p-4">
           <input

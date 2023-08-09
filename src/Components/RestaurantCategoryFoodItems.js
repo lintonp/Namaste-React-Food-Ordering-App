@@ -1,4 +1,11 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../Store/CartSlice";
+
 const RestaurantCategoryFoodItems = ({ food }) => {
+  const dispath = useDispatch();
+  const handleAddClick = () => {
+    dispath(addItem(food));
+  };
   return (
     <div className="border-b flex justify-between px-1 py-2">
       <div>
@@ -8,7 +15,10 @@ const RestaurantCategoryFoodItems = ({ food }) => {
       </div>
       <div className="align">
         {/* <img> */}
-        <button className="rounded-lg p-1 border-solid border-red-600 bg-green-300 hover:bg-green-400">
+        <button
+          className="rounded-lg p-1 border-solid border-red-600 bg-green-300 hover:bg-green-400"
+          onClick={handleAddClick}
+        >
           Add
         </button>
         {/* <div className="rounded-r-lg">+</div> */}
