@@ -26,6 +26,7 @@ const ResCard = (props) => {
   );
 };
 
+//Higher Order Component
 export const withVeg = (ResCard) => {
   return (props) => {
     return (

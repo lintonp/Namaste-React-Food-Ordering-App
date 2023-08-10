@@ -1,7 +1,9 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import RestaurantCategoryFoodItems from "./RestaurantCategoryFoodItems";
 import { useEffect, useState } from "react";
+
+import { clearCart } from "../Store/CartSlice";
 
 const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0);
@@ -10,6 +12,12 @@ const Cart = () => {
   const cartIDs = useSelector((state) => state.cart.itemsIds);
   console.log("cartItems", cartItems);
   console.log(cartIDs);
+
+  const dispath = useDispatch();
+
+  const handleClearCart = () => {
+    dispath(clearCart());
+  };
 
   useEffect(() => {
     calculateCartTotal();
@@ -20,10 +28,10 @@ const Cart = () => {
     cartItems.forEach((item) => {
       console.log("item.price", item.price);
       console.log("cartIDs[item.id]", cartIDs[item.id]);
-      total += (item.price / 100) * cartIDs[item.id];
+      total += parseFloat((item.price / 100).toFixed(2)) * cartIDs[item.id];
       console.log("total", total);
     });
-    setCartTotal(total);
+    setCartTotal(parseFloat(total.toFixed(2)));
   };
 
   //   items === []
@@ -42,11 +50,22 @@ const Cart = () => {
   }
 
   return (
-    <div className="place-content-center w-8/12">
-      {cartItems.map((item) => (
-        <RestaurantCategoryFoodItems key={item.id} food={item} />
-      ))}
-      <h1>Cart Total: {cartTotal}</h1>
+    <div className="m-4 p-2">
+      <div className="text-right mx-16">
+        <button className="font-semibold" onClick={handleClearCart}>
+          Clear Cart
+        </button>
+      </div>
+      <div className="m-4 p-2 flex place-self-center">
+        <div className="items-center place-items-center w-8/12">
+          {cartItems.map((item) => (
+            <RestaurantCategoryFoodItems key={item.id} food={item} />
+          ))}
+          <div className="">
+            <h1 className="font-bold text-end">Cart Total: {cartTotal}</h1>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

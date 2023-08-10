@@ -35,9 +35,7 @@ const AppLayout = () => {
     <Provider store={appStore}>
       <userContext.Provider value={{ loggedinUser, setLoggedinUser }}>
         <Header />
-        <div className="mx-4">
-          <Outlet />
-        </div>
+        <Outlet />
       </userContext.Provider>
     </Provider>
   );
