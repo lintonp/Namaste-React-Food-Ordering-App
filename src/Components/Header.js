@@ -38,7 +38,7 @@ const Header = () => {
             <Link to="/grocery">Grocery</Link>
           </li>
           <li className="px-3">
-            <Link to="/cart">Cart - {cartItems.length} items</Link>
+            <Link to="/cart">Cart ({cartItems.length})</Link>
           </li>
           <li className="px-3">
             <button

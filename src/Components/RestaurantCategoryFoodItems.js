@@ -1,11 +1,18 @@
-import { useDispatch } from "react-redux";
-import { addItem } from "../Store/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem } from "../Store/CartSlice";
 
 const RestaurantCategoryFoodItems = ({ food }) => {
   const dispath = useDispatch();
+  const cartIds = useSelector((state) => state.cart.itemsIds);
+
   const handleAddClick = () => {
     dispath(addItem(food));
   };
+
+  const handleSubClick = () => {
+    dispath(removeItem(food.id));
+  };
+
   return (
     <div className="border-b flex justify-between px-1 py-2">
       <div>
@@ -16,10 +23,19 @@ const RestaurantCategoryFoodItems = ({ food }) => {
       <div className="align">
         {/* <img> */}
         <button
-          className="rounded-lg p-1 border-solid border-red-600 bg-green-300 hover:bg-green-400"
+          className="rounded-lg p-1  bg-gray-300 hover:bg-gray-400"
+          onClick={handleSubClick}
+        >
+          -
+        </button>
+        <span className="m-1 p-1">
+          {cartIds[food.id] ? cartIds[food.id] : 0}
+        </span>
+        <button
+          className="rounded-lg p-1  bg-gray-300 hover:bg-gray-400"
           onClick={handleAddClick}
         >
-          Add
+          +
         </button>
         {/* <div className="rounded-r-lg">+</div> */}
       </div>

@@ -12,11 +12,25 @@ const cartSlice = createSlice({
         state.itemsIds[action.payload.id] = 1;
         state.items.push(action.payload);
       } else {
-        state.itemsIds[action.payload.id] =
-          state.itemsIds[action.payload.id] + 1;
+        state.itemsIds[action.payload.id] += 1;
       }
     },
-    removeItem: (state) => {
+    removeItem: (state, action) => {
+      if (state.itemsIds.hasOwnProperty(action.payload)) {
+        console.log("hasOwnProperty");
+        if (state.itemsIds[action.payload] === 1) {
+          delete state.itemsIds[action.payload];
+          state.items = state.items.filter(
+            (item) => item.id !== action.payload
+          );
+        } else {
+          state.itemsIds[action.payload] -= 1;
+        }
+      } else {
+        console.log("does not hasOwnProperty");
+      }
+    },
+    clearItem: (state, action) => {
       state.items.pop();
     },
     clearCart: (state) => {

@@ -73,19 +73,19 @@ const CBR = createBrowserRouter([
         ),
       },
       {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Cart />
+          </Suspense>
+        ),
+      },
+      {
         path: "/restaurant/:resID",
         element: <RestaurantMenu />,
       },
     ],
     errorElement: <Error />,
-  },
-  {
-    path: "/cart",
-    element: (
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Cart />
-      </Suspense>
-    ),
   },
 ]);
 
