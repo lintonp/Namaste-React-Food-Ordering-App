@@ -26,10 +26,10 @@ const Cart = () => {
   const calculateCartTotal = () => {
     let total = 0;
     cartItems.forEach((item) => {
-      console.log("item.price", item.price);
-      console.log("cartIDs[item.id]", cartIDs[item.id]);
       total += parseFloat((item.price / 100).toFixed(2)) * cartIDs[item.id];
-      console.log("total", total);
+      // console.log("item.price", item.price);
+      // console.log("cartIDs[item.id]", cartIDs[item.id]);
+      // console.log("total", total);
     });
     setCartTotal(parseFloat(total.toFixed(2)));
   };
@@ -61,8 +61,15 @@ const Cart = () => {
           {cartItems.map((item) => (
             <RestaurantCategoryFoodItems key={item.id} food={item} />
           ))}
-          <div className="">
-            <h1 className="font-bold text-end">Cart Total: {cartTotal}</h1>
+          <div className="m-7 mx-32">
+            <h1 className="font-bold text-lg text-end">
+              Cart Total: ₹{cartTotal}
+            </h1>
+          </div>
+          <div className="place-content-end">
+            <button className="m-4 p-2 bg-green-400 rounded-lg hover:bg-green-500">
+              Checkout
+            </button>
           </div>
         </div>
       </div>

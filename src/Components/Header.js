@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Logo_URL } from "../Utils/constants";
 import useOnlineStatus from "../Utils/useOnlineStatus";
 import { Link } from "react-router-dom";
+import cartIcon from "../Utils/Images/cartIcon.png";
 
 import userContext from "../Utils/useContext";
 
@@ -39,9 +40,13 @@ const Header = () => {
           </li>
           <li className="px-3">
             <Link to="/cart">
-              Cart <sup className="font-bold">{cartItems.length}</sup>
+              <span className="flex">
+                <img src={cartIcon} alt="Cart" className="w-6 h-6" />
+                <sup className="font-bold text-base">{cartItems.length}</sup>
+              </span>
             </Link>
           </li>
+          <li className="px-3">{loggedinUser}</li>
           <li className="px-3">
             <button
               onClick={() => {
@@ -53,7 +58,6 @@ const Header = () => {
               {loginbtn}
             </button>
           </li>
-          <li className="px-3">{loggedinUser}</li>
         </ul>
       </div>
     </div>
