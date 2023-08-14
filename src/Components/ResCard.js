@@ -9,7 +9,7 @@ const ResCard = (props) => {
   // const { loggedinUser } = userContext(useContext);
 
   return (
-    <div className="m-4 p-2 w-[200px] box-border border-solid rounded-lg bg-gray-200 hover:bg-gray-300">
+    <div className="m-4 p-2 w-[200px] box-border border-solid rounded-lg bg-gray-100 hover:bg-gray-200">
       <div className="res-card-image-container">
         <img
           className="rounded-md"

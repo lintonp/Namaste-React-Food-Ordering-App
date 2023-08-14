@@ -58,13 +58,14 @@ const Body = () => {
   };
 
   const filter_topRating = () => {
-    console.log(rawDataJson);
+    console.log("filteredListOfRestuarant",filteredListOfRestuarant);
     if (filterButton) {
-      let newList = listOfRestuarant.filter((res) => res.data.avgRating > 4);
+      filteredListOfRestuarant.map((res) => console.log(typeof res.info.avgRating));
+      let newList = filteredListOfRestuarant.filter((res) => res.info.avgRating > 4);
       setFilteredListOfRestuarant(newList);
       setFilterButton(false);
     } else {
-      setFilteredListOfRestuarant(resListData);
+      setFilteredListOfRestuarant(listOfRestuarant);
       setFilterButton(true);
     }
   };
@@ -111,7 +112,7 @@ const Body = () => {
             className="p-2 rounded-lg bg-blue-200  hover:bg-blue-300"
             onClick={filter_topRating}
           >
-            Filter top rated restaurants
+            {filterButton ? "Filter top rated restaurants" : "Reset Filter"}
           </button>
         </div>
       </div>
