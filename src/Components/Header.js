@@ -14,7 +14,7 @@ const Header = () => {
   const { loggedinUser } = useContext(userContext);
 
   const cartItems = useSelector((state) => state.cart.items);
-  const cartIds = useSelector((state) => state.cart.itemsIds);
+  // const cartIds = useSelector((state) => state.cart.itemsIds);
   // console.log(cartIds);
   // console.log("cartItems", cartItems);
 

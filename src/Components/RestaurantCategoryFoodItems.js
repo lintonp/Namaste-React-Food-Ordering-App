@@ -18,7 +18,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
 
   useEffect(() => {
     const price = food.price ? food.price : food.defaultPrice;
-    setItemTotal((price / 100) * cartIds[food.id]);
+    setItemTotal(parseFloat(((price / 100) * cartIds[food.id]).toFixed(2)));
   }, [cartIds]);
 
   const handleAddClick = () => {
@@ -35,9 +35,11 @@ const RestaurantCategoryFoodItems = ({ food }) => {
 
   return (
     <div className="border-b flex justify-between px-1 py-2 hover:bg-slate-100">
-      <div>
+      <div className="flex items-center">
         <p className="font-medium">{food.name}</p>
-        <p>₹{food.price ? food.price / 100 : food.defaultPrice / 100}</p>
+        <p className="mr-auto">
+          ₹{food.price ? food.price / 100 : food.defaultPrice / 100}
+        </p>
         {isResItem && (
           <p className="text-sm font-light w-9/12">{food.description}</p>
         )}
@@ -53,10 +55,10 @@ const RestaurantCategoryFoodItems = ({ food }) => {
 
         {/* Add, Remove Button */}
         {cartIds.hasOwnProperty(food.id) ? (
-          <div className="flex max-h-9 justify-evenly">
+          <div className="flex max-h-9 m-2 justify-evenly">
             {/* <img> */}
             <button
-              className="rounded-l-lg p-1 font-bold border-1 hover:bg-red-200"
+              className="rounded-l-lg w-6 p-1 font-bold hover:bg-red-200 hover:border-2 hover:border-red-300"
               onClick={handleSubClick}
             >
               -
@@ -65,7 +67,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
               {cartIds[food.id] ? cartIds[food.id] : 0}
             </span>
             <button
-              className="rounded-r-lg border-1 border-solid p-1 font-bold hover:bg-green-200"
+              className="rounded-r-lg w-6 p-1 font-bold hover:bg-green-200 hover:border-2 hover:border-green-300"
               onClick={handleAddClick}
             >
               +
@@ -74,7 +76,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
           </div>
         ) : (
           <button
-            className="m-1 px-1 max-h-10 font-semibold align border-2 rounded-lg border-double border-green-400 bg-green-100 hover:bg-green-200"
+            className="m-1 w-20 px-1 max-h-10 font-semibold align border-2 rounded-lg border-double border-green-400 bg-green-100 hover:bg-green-200"
             onClick={handleAddClick}
           >
             Add

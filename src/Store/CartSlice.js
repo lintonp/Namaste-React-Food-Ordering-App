@@ -34,8 +34,14 @@ const cartSlice = createSlice({
       delete state.itemsIds[action.payload];
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
+    // clearCart: (state) => {
+    //   state.items.length = 0;
+    // },
+    //originalState = {items["pizza"]}
     clearCart: (state) => {
-      state.items.length = 0;
+      //RTK - either mutate the existing state or return a new state
+      //state.items.length = 0; //originalState = []
+      return { items: [] }; //this new [] will be replaced inside originalState = { items: [] }
     },
   },
 });
