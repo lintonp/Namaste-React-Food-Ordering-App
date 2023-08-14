@@ -93,7 +93,7 @@ const Body = () => {
       <div className="flex m-2 content-center">
         <div className="search m-4 p-4">
           <input
-            className="border border-solid border-black "
+            className="border border-solid border-black p-2"
             type="text"
             value={searchText}
             onChange={(e) => {

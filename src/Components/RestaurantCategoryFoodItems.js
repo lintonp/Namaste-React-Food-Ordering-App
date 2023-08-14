@@ -37,6 +37,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
     <div className="border-b flex justify-between px-1 py-2 hover:bg-slate-100">
       <div className="flex items-center">
         <p className="font-medium">{food.name}</p>
+        {!isResItem && <span className="m-2">-</span>}
         <p className="mr-auto">
           ₹{food.price ? food.price / 100 : food.defaultPrice / 100}
         </p>
@@ -44,7 +45,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
           <p className="text-sm font-light w-9/12">{food.description}</p>
         )}
       </div>
-      <div className="flex wrap">
+      <div className="flex">
         {!isResItem && (
           <div className="my-2">
             <span className="font-normal text-lg mx-4 my-2 p-2">
