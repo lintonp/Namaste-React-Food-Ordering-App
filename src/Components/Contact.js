@@ -3,7 +3,26 @@ import userContext from "../Utils/useContext";
 
 const Contact = () => {
   const { loggedinUser } = useContext(userContext);
-  return <div>Hey {loggedinUser}, Contact Us</div>;
+  return (
+    <div className="m4 p-4">
+      <h1>Contact Us</h1>
+      <br />
+      <p>Hey {loggedinUser}, send you queries below</p>
+      <form>
+        <input
+          className="border border-1 border-black m-4 p-4"
+          placeholder="name"
+        />
+        <input
+          className="border border-1 border-black m-4 p-4"
+          placeholder="message"
+        />
+        <button className="border border-2 border-black border-double m-4 p-4 bg-slate-300">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default Contact;

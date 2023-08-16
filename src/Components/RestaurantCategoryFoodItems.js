@@ -14,7 +14,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
     if (location.pathname.includes("/restaurant/")) {
       setIsResItem(true);
     }
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     const price = food.price ? food.price : food.defaultPrice;
@@ -35,11 +35,13 @@ const RestaurantCategoryFoodItems = ({ food }) => {
 
   return (
     <div className="border-b flex justify-between px-1 py-2 hover:bg-slate-100">
-      <div className="flex items-center">
+      <div className="items-start">
         <p className="font-medium">{food.name}</p>
-        <p className="mr-auto">
-          ₹{food.price ? food.price / 100 : food.defaultPrice / 100}
-        </p>
+        {!isResItem && (
+          <p className="mr-auto mx-4 font-normal">
+            ₹{food.price ? food.price / 100 : food.defaultPrice / 100}
+          </p>
+        )}
         {isResItem && (
           <p className="text-sm font-light w-9/12">{food.description}</p>
         )}
@@ -55,7 +57,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
 
         {/* Add, Remove Button */}
         {cartIds.hasOwnProperty(food.id) ? (
-          <div className="flex max-h-9 m-2 justify-evenly">
+          <div className="flex max-h-9 m-2 border border-1 rounded-lg border-slate-300 justify-evenly">
             {/* <img> */}
             <button
               className="rounded-l-lg w-6 p-1 font-bold hover:bg-red-200 hover:border-2 hover:border-red-300"
