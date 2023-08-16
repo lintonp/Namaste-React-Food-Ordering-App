@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import UserClass from "./UserClass";
 import userContext from "../Utils/useContext";
 const About = () => {
   const { loggedinUser, setLoggedinUser } = useContext(userContext);
-  const [userText, setUserText] = useState("");
+
   return (
     <>
       <h1>About Us page</h1>
@@ -20,7 +20,6 @@ const About = () => {
             setLoggedinUser(e.target.value);
           }}
         />
-        <p className=" mx-4 my-1 p-4">{userText}</p>
       </div>
     </>
   );

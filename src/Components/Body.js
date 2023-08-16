@@ -1,5 +1,5 @@
 import ResCard, { withVeg } from "./ResCard";
-import { resListData } from "../Utils/mockData";
+// import { resListData } from "../Utils/mockData";
 import { SWIGGY_API_URL } from "../Utils/constants";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const Body = () => {
 
   const ResCardVeg = withVeg(ResCard);
 
-  let rawDataJson;
+  // let rawDataJson;
 
   useEffect(() => {
     console.log("UseEffect Called");
@@ -27,15 +27,15 @@ const Body = () => {
 
   console.log("Body Rendered");
 
-  const fetchDataAPI = async () => {
-    //for now without API
-    setListOfRestuarant(resListData);
-    console.log("Calling API");
-    const raw_data = await fetch(SWIGGY_API_URL);
-    console.log(raw_data);
-    rawDataJson = raw_data.json();
-    console.log(rawDataJson);
-  };
+  // const fetchDataAPI = async () => {
+  //   //for now without API
+  //   setListOfRestuarant(resListData);
+  //   console.log("Calling API");
+  //   const raw_data = await fetch(SWIGGY_API_URL);
+  //   console.log(raw_data);
+  //   rawDataJson = raw_data.json();
+  //   console.log(rawDataJson);
+  // };
 
   const getResList = () => {
     console.log("Fetching List");
@@ -58,10 +58,14 @@ const Body = () => {
   };
 
   const filter_topRating = () => {
-    console.log("filteredListOfRestuarant",filteredListOfRestuarant);
+    console.log("filteredListOfRestuarant", filteredListOfRestuarant);
     if (filterButton) {
-      filteredListOfRestuarant.map((res) => console.log(typeof res.info.avgRating));
-      let newList = filteredListOfRestuarant.filter((res) => res.info.avgRating > 4);
+      filteredListOfRestuarant.map((res) =>
+        console.log(typeof res.info.avgRating)
+      );
+      let newList = filteredListOfRestuarant.filter(
+        (res) => res.info.avgRating > 4
+      );
       setFilteredListOfRestuarant(newList);
       setFilterButton(false);
     } else {

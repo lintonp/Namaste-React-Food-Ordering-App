@@ -1,4 +1,3 @@
-import { useState } from "react";
 import RestaurantCategoryFoodItems from "./RestaurantCategoryFoodItems";
 
 const RestaurantCategoryItem = ({
@@ -8,8 +7,6 @@ const RestaurantCategoryItem = ({
   setSeeCategoryIndex,
   collapseAll,
 }) => {
-  const [foodItemsDisplay, setFoodItemsDisplay] = useState(false);
-
   const changeDisplay = () => {
     // foodItemsDisplay ? setFoodItemsDisplay(false) : setFoodItemsDisplay(true);
     // setFoodItemsDisplay(!foodItemsDisplay);

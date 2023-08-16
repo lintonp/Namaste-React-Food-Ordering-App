@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { SWIGGY_MENU_API_URL } from "../Utils/constants";
-import { json } from "react-router-dom";
 
 const useRestaurantMenu = (resID) => {
   const [resMenuDetails, setResMenuDetails] = useState([]);

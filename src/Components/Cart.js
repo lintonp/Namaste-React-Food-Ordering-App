@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import RestaurantCategoryFoodItems from "./RestaurantCategoryFoodItems";
-import RestaurantCategoryFirstItem from "./RestaurantCategoryFirstItem";
 
 import { clearCart } from "../Store/CartSlice";
 
