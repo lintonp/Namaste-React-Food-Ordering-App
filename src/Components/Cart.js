@@ -33,7 +33,6 @@ const Cart = () => {
     });
     setCartTotal(parseFloat(total.toFixed(2)));
   };
-
   //   items === []
   //     ? items.forEach((item) => {
   //         console.log(item.name + " - " + cartIDs[item.id]);

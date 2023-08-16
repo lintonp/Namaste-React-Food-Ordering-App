@@ -5,7 +5,7 @@ const About = () => {
   const { loggedinUser, setLoggedinUser } = useContext(userContext);
 
   return (
-    <>
+    <div className="m-4 p-4">
       <h1>About Us page</h1>
       {/* <User name="Linton" location="Mumbai" /> */}
       <UserClass name="Linton" location="Mumbai" />
@@ -21,7 +21,7 @@ const About = () => {
           }}
         />
       </div>
-    </>
+    </div>
   );
 };
 

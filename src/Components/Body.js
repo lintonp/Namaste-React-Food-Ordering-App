@@ -19,14 +19,6 @@ const Body = () => {
 
   // let rawDataJson;
 
-  useEffect(() => {
-    console.log("UseEffect Called");
-    // fetchDataAPI();
-    getResList();
-  }, []);
-
-  console.log("Body Rendered");
-
   // const fetchDataAPI = async () => {
   //   //for now without API
   //   setListOfRestuarant(resListData);
@@ -37,25 +29,34 @@ const Body = () => {
   //   console.log(rawDataJson);
   // };
 
-  const getResList = () => {
-    console.log("Fetching List");
-    fetch(SWIGGY_API_URL).then((raw) => {
-      // console.log(raw);
-      raw.json().then((data) => {
-        // console.log("data", data);
+  useEffect(() => {
+    console.log("UseEffect Called");
 
-        let list =
-          data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants;
-        console.log("getResList list", list);
-        // list.map((res) => console.log(res));
-        setListOfRestuarant(list);
-        setFilteredListOfRestuarant(list);
-        // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
-        // setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+    const getResList = () => {
+      console.log("Fetching List");
+      fetch(SWIGGY_API_URL).then((raw) => {
+        // console.log(raw);
+        raw.json().then((data) => {
+          // console.log("data", data);
+
+          let list =
+            data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+              ?.restaurants;
+          console.log("getResList list", list);
+          // list.map((res) => console.log(res));
+          setListOfRestuarant(list);
+          setFilteredListOfRestuarant(list);
+          // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+          // setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+        });
       });
-    });
-  };
+    };
+
+    // fetchDataAPI();
+    getResList();
+  }, []);
+
+  console.log("Body Rendered");
 
   const filter_topRating = () => {
     console.log("filteredListOfRestuarant", filteredListOfRestuarant);
