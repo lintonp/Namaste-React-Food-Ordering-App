@@ -42,7 +42,11 @@ const Header = () => {
             <Link to="/cart">
               <span className="flex">
                 <img src={cartIcon} alt="Cart" className="w-6 h-6" />
-                <sup className="font-bold text-base">{cartItems.length}</sup>
+                {cartItems.length === 0 ? (
+                  <sup className="font-bold text-base text-red-600">0</sup>
+                ) : (
+                  <sup className="font-bold text-base">{cartItems.length}</sup>
+                )}
               </span>
             </Link>
           </li>

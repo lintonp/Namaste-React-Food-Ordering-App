@@ -17,7 +17,10 @@ const Contact = () => {
           className="border border-1 border-black m-4 p-4"
           placeholder="message"
         />
-        <button className="border border-2 border-black border-double m-4 p-4 bg-slate-300">
+        <button
+          onClick={(event) => event.preventDefault()}
+          className="border border-2 border-black border-double m-4 p-4 bg-slate-200"
+        >
           Submit
         </button>
       </form>
