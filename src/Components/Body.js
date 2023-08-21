@@ -29,27 +29,43 @@ const Body = () => {
   //   console.log(rawDataJson);
   // };
 
+  // const getResList = () => {
+  //   console.log("Fetching List");
+  //   fetch(SWIGGY_API_URL).then((raw) => {
+  //     // console.log(raw);
+  //     raw.json().then((data) => {
+  //       // console.log("data", data);
+
+  //       let list =
+  //         data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+  //           ?.restaurants;
+  //       console.log("getResList list", list);
+  //       // list.map((res) => console.log(res));
+  //       setListOfRestuarant(list);
+  //       setFilteredListOfRestuarant(list);
+  //       // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+  //       // setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
+  //     });
+  //   });
+  // };
   useEffect(() => {
     console.log("UseEffect Called");
 
-    const getResList = () => {
+    const getResList = async () => {
       console.log("Fetching List");
-      fetch(SWIGGY_API_URL).then((raw) => {
-        // console.log(raw);
-        raw.json().then((data) => {
-          // console.log("data", data);
+      // const rawData = await fetch(SWIGGY_API_URL);
+      // const data = await rawData.json();
+      let data = await fetch(SWIGGY_API_URL);
+      const json = await data.json();
+      data = json;
 
-          let list =
-            data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-              ?.restaurants;
-          console.log("getResList list", list);
-          // list.map((res) => console.log(res));
-          setListOfRestuarant(list);
-          setFilteredListOfRestuarant(list);
-          // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
-          // setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
-        });
-      });
+      let list =
+        data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+      console.log("getResList list", list);
+      // list.map((res) => console.log(res));
+      setListOfRestuarant(list);
+      setFilteredListOfRestuarant(list);
     };
 
     // fetchDataAPI();
@@ -129,6 +145,7 @@ const Body = () => {
               <Link
                 key={restaurant.info.id}
                 to={"restaurant/" + restaurant.info.id}
+                data-testid="resCardID"
               >
                 {restaurant.info.veg ? (
                   <ResCardVeg resData={restaurant} />

@@ -18,6 +18,9 @@ const Header = () => {
   // console.log(cartIds);
   // console.log("cartItems", cartItems);
 
+  let loginStatusClassName = onlineStatus ? "text-green-500" : "text-red-500";
+  loginStatusClassName += " font-bold";
+
   return (
     <div className="flex justify-between shadow-md bg-pink-50">
       <div className="image-container">
@@ -25,7 +28,12 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <ul className="flex m-4 p-3">
-          <li className="px-3">Online Status: {onlineStatus ? "On" : "Off"}</li>
+          <li className="px-3">
+            Online Status:{" "}
+            <span className={loginStatusClassName}>
+              {onlineStatus ? "On" : "Off"}
+            </span>
+          </li>
           <li className="px-3">
             <Link to="/">Home</Link>
           </li>
