@@ -17,7 +17,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       if (state.itemsIds.hasOwnProperty(action.payload)) {
-        console.log("hasOwnProperty");
+        // console.log("hasOwnProperty");
         if (state.itemsIds[action.payload] === 1) {
           delete state.itemsIds[action.payload];
           state.items = state.items.filter(
@@ -27,7 +27,7 @@ const cartSlice = createSlice({
           state.itemsIds[action.payload] -= 1;
         }
       } else {
-        console.log("does not hasOwnProperty");
+        // console.log("does not hasOwnProperty");
       }
     },
     clearItem: (state, action) => {
