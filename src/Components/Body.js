@@ -18,7 +18,7 @@ const Body = () => {
   const ResCardVeg = withVeg(ResCard);
 
   const getResList = async () => {
-    console.log("Fetching List");
+    // console.log("Fetching List");
     // const rawData = await fetch(SWIGGY_API_URL);
     // const data = await rawData.json();
     let data = await fetch(SWIGGY_API_URL);
@@ -27,7 +27,6 @@ const Body = () => {
 
     let list =
       data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    console.log("getResList list", list);
     // list.map((res) => console.log(res));
     setListOfRestuarant(list);
     setFilteredListOfRestuarant(list);
@@ -38,14 +37,9 @@ const Body = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("Body Rendered");
-
   const filter_topRating = () => {
-    console.log("filteredListOfRestuarant", filteredListOfRestuarant);
+    // console.log("filteredListOfRestuarant", filteredListOfRestuarant);
     if (filterButton) {
-      filteredListOfRestuarant.map((res) =>
-        console.log(typeof res.info.avgRating)
-      );
       let newList = filteredListOfRestuarant.filter(
         (res) => res.info.avgRating > 4
       );
@@ -58,7 +52,6 @@ const Body = () => {
   };
 
   const searchFilter = () => {
-    console.log(searchText);
     let newList = listOfRestuarant.filter((res) => {
       return res.info.name
         .toLocaleLowerCase()

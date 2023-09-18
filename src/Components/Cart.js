@@ -10,8 +10,6 @@ const Cart = () => {
 
   const cartItems = useSelector((state) => state.cart.items);
   const cartIDs = useSelector((state) => state.cart.itemsIds);
-  console.log("cartItems", cartItems);
-  console.log(cartIDs);
 
   const dispath = useDispatch();
 
