@@ -10,9 +10,6 @@ const useOnlineStatus = () => {
     setonlineStatus(true);
   });
 
-  // useEffect(()=>{
-  // },[])
-
   return onlineStatus;
 };
 

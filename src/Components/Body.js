@@ -17,59 +17,25 @@ const Body = () => {
 
   const ResCardVeg = withVeg(ResCard);
 
-  // let rawDataJson;
+  const getResList = async () => {
+    console.log("Fetching List");
+    // const rawData = await fetch(SWIGGY_API_URL);
+    // const data = await rawData.json();
+    let data = await fetch(SWIGGY_API_URL);
+    const json = await data.json();
+    data = json;
 
-  // const fetchDataAPI = async () => {
-  //   //for now without API
-  //   setListOfRestuarant(resListData);
-  //   console.log("Calling API");
-  //   const raw_data = await fetch(SWIGGY_API_URL);
-  //   console.log(raw_data);
-  //   rawDataJson = raw_data.json();
-  //   console.log(rawDataJson);
-  // };
-
-  // const getResList = () => {
-  //   console.log("Fetching List");
-  //   fetch(SWIGGY_API_URL).then((raw) => {
-  //     // console.log(raw);
-  //     raw.json().then((data) => {
-  //       // console.log("data", data);
-
-  //       let list =
-  //         data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-  //           ?.restaurants;
-  //       console.log("getResList list", list);
-  //       // list.map((res) => console.log(res));
-  //       setListOfRestuarant(list);
-  //       setFilteredListOfRestuarant(list);
-  //       // setListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
-  //       // setFilteredListOfRestuarant(data.data?.cards[2]?.data?.data?.cards);
-  //     });
-  //   });
-  // };
+    let list =
+      data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    console.log("getResList list", list);
+    // list.map((res) => console.log(res));
+    setListOfRestuarant(list);
+    setFilteredListOfRestuarant(list);
+  };
   useEffect(() => {
-    console.log("UseEffect Called");
-
-    const getResList = async () => {
-      console.log("Fetching List");
-      // const rawData = await fetch(SWIGGY_API_URL);
-      // const data = await rawData.json();
-      let data = await fetch(SWIGGY_API_URL);
-      const json = await data.json();
-      data = json;
-
-      let list =
-        data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants;
-      console.log("getResList list", list);
-      // list.map((res) => console.log(res));
-      setListOfRestuarant(list);
-      setFilteredListOfRestuarant(list);
-    };
-
     // fetchDataAPI();
     getResList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log("Body Rendered");

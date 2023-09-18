@@ -19,6 +19,7 @@ const RestaurantCategoryFoodItems = ({ food }) => {
   useEffect(() => {
     const price = food.price ? food.price : food.defaultPrice;
     setItemTotal(parseFloat(((price / 100) * cartIds[food.id]).toFixed(2)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartIds]);
 
   const handleAddClick = () => {
