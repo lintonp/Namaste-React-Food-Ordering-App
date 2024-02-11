@@ -14,8 +14,10 @@ const useRestaurantMenu = (resID) => {
     // console.log("Fetching inside Restaurant Menu");
     const rawData = await fetch(SWIGGY_MENU_API_URL + resID);
     const jsonData = await rawData.json();
+    console.log("jsonData", jsonData);
     const list =
       jsonData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    console.log("list", list);
     setResMenuDetails(list);
     setResCategoryDetails(
       list.filter(

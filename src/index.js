@@ -83,6 +83,10 @@ const CBR = createBrowserRouter([
         path: "/restaurant/:resID",
         element: <RestaurantMenu />,
       },
+      {
+        path: "/error",
+        element: <Error />,
+      },
     ],
     errorElement: <Error />,
   },

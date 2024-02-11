@@ -2,8 +2,10 @@ import ResCard, { withVeg } from "./ResCard";
 // import { resListData } from "../Utils/mockData";
 import { SWIGGY_API_URL } from "../Utils/constants";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import { useDispatch } from "react-redux";
+import { addError } from "../Store/ErrorSlice";
 
 const Body = () => {
   const [listOfRestuarant, setListOfRestuarant] = useState([]);
@@ -17,19 +19,36 @@ const Body = () => {
 
   const ResCardVeg = withVeg(ResCard);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const getResList = async () => {
-    // console.log("Fetching List");
+    console.log("Fetching List ...");
     // const rawData = await fetch(SWIGGY_API_URL);
     // const data = await rawData.json();
-    let data = await fetch(SWIGGY_API_URL);
-    const json = await data.json();
-    data = json;
+    try {
+      const data = await fetch(SWIGGY_API_URL);
+      console.log("Body", data);
+      const json = await data.json();
+      console.log("Body", json);
+      // let list =
+      //   data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      let list =
+        json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
 
-    let list =
-      data.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    // list.map((res) => console.log(res));
-    setListOfRestuarant(list);
-    setFilteredListOfRestuarant(list);
+      //Update lists
+      setListOfRestuarant(list);
+      setFilteredListOfRestuarant(list);
+    } catch (error) {
+      // console.log("Sorry, ", error.message);
+      const errmessage =
+        error.message === "Failed to fetch"
+          ? "Failed to fetch data :("
+          : error.message;
+      dispatch(addError({ message: errmessage, description: "" }));
+      navigate("/error");
+    }
   };
   useEffect(() => {
     // fetchDataAPI();
@@ -97,8 +116,7 @@ const Body = () => {
         </div>
       </div>
       <div className="flex flex-wrap">
-        {
-          //console.log(resListData)
+        {filteredListOfRestuarant &&
           filteredListOfRestuarant.map((restaurant) => {
             return (
               <Link
@@ -113,8 +131,7 @@ const Body = () => {
                 )}
               </Link>
             );
-          })
-        }
+          })}
       </div>
     </div>
   );

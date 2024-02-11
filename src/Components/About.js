@@ -17,7 +17,11 @@ const About = () => {
           type="text"
           value={loggedinUser}
           onChange={(e) => {
-            setLoggedinUser(e.target.value);
+            setLoggedinUser(
+              e.target.value.length < 50
+                ? e.target.value
+                : e.target.value.substring(0, 50)
+            );
           }}
         />
       </div>
